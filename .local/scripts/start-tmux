@@ -1,0 +1,37 @@
+#!/bin/bash
+
+SESH="owl"
+
+tmux has-session -t $SESH 2>/dev/null
+
+if [ $? != 0 ]; then
+	tmux new-session -d -s $SESH -n "editor"
+
+	tmux send-keys -t $SESH:editor "cd ~/repos/hybrid-pathways/owli-app-svc/django-server" C-m
+	tmux send-keys -t $SESH:editor "vim ." C-m
+
+	tmux new-window -t $SESH -n "django-server"
+	tmux send-keys -t $SESH:django-server "cd ~/repos/hybrid-pathways/owli-app-svc/django-server" C-m
+	tmux send-keys -t $SESH:django-server "source django-venv/bin/activate" C-m
+	tmux send-keys -t $SESH:django-server "python manage.py runserver" C-m
+
+	tmux new-window -t $SESH -n "django-shell"
+	tmux send-keys -t $SESH:django-shell "cd ~/repos/hybrid-pathways/owli-app-svc/django-server" C-m
+	tmux send-keys -t $SESH:django-shell "source django-venv/bin/activate" C-m
+	tmux send-keys -t $SESH:django-shell "python manage.py shell_plus --bpython -- --config=bpython" C-m
+
+	tmux new-window -t $SESH -n "frontend-server"
+	tmux send-keys -t $SESH:frontend-server "cd ~/repos/hybrid-pathways/owli-app-svc/frontend-server" C-m
+	tmux send-keys -t $SESH:frontend-server "source ../.devcontainer/frontend-server.env" C-m
+	tmux send-keys -t $SESH:frontend-server "npm start" C-m
+
+	tmux new-window -t $SESH -n "git"
+	tmux send-keys -t $SESH:git "cd ~/projects/owl" C-m
+	tmux send-keys -t $SESH:git "git status" C-m	
+
+	tmux select-window -t $SESH:editor
+fi
+
+tmux attach-session -t $SESH
+
+
