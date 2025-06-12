@@ -1,2 +1,1 @@
 require("reeleese")
-print("hello")
