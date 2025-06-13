@@ -1,3 +1,5 @@
 require("reeleese.remap")
+require("reeleese.set")
 require("reeleese.lazy")
-vim.cmd [[colorscheme catppuccin]]
+require("reeleese.lsp")
+require("reeleese.colors")
