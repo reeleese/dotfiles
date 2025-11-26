@@ -1,0 +1,9 @@
+music_directory "~/Music"
+restore_paused "yes"
+audio_output {
+    type "pulse"
+    name "default"
+}
+log_file "~/logs/mpd.log"
+auto_update "yes"
+bind_to_address "127.0.0.1"

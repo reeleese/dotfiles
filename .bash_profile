@@ -7,5 +7,8 @@ alias vim=nvim
 
 export PATH="$PATH":"$HOME/.local/scripts/"
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+export PATH="$PATH:/usr/sbin"
+export PATH="$PATH":"$HOME/.cargo/bin"
 
 export VIMRUNTIME=/opt/nvim-linux-x86_64/share/nvim/runtime
+export EDITOR=nvim
